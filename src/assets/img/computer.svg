@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472.24 386.88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #263238;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Device">
+    <g>
+      <path class="cls-1" d="m183.17,313.32s-2.25,27.81-12.31,37.87c-10.06,10.06-35.7,15.49-35.7,15.49v19.2h201.92v-19.2s-25.61-5.43-35.67-15.49c-10.06-10.06-12.34-37.87-12.34-37.87h-105.9Z"/>
+      <path class="cls-1" d="m143.81,372.34h184.61"/>
+      <rect class="cls-1" x="213.91" y="282.68" width="44.43" height="6.84" rx="2" ry="2"/>
+      <path class="cls-1" d="m461.24,1H11C5.48,1,1,5.48,1,11v280.94c0,5.52,4.48,10,10,10h450.24c5.52,0,10-4.48,10-10V11c0-5.52-4.48-10-10-10Zm-8,270.94H19V19h434.24v252.94Z"/>
+    </g>
+  </g>
+</svg>
