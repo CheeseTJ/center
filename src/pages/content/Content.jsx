@@ -2,7 +2,8 @@ import {Component} from "react";
 import {getPerDayWord} from "../../api/Content.js";
 import {DragCartoon} from "../../components/DragCartoon/DragCartoon.jsx";
 import './Content.scss'
-import {fetchSvg} from "../../utils/method.js";
+import computerSvg from '../../assets/img/computer.svg?url'
+import PersonSvg from "../../assets/svg/personSvg.jsx";
 export default class Content extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,6 @@ export default class Content extends Component {
         this.state = {
             bgImg: 'https://files.superbed.cn/proxy/726e6e6a692035356d716a72756e7534797e743478797f787569347975773578282b237f78792e782d2e2f2e297b232b7c2222237f7b282a7f2b2d227b222878222a2b2b2e792234706a7d',
             personSvg:null,
-            computerSvg:null,
             card: {
                 right: 0,
                 width: 0,
@@ -40,6 +40,13 @@ export default class Content extends Component {
                 inx: 0,
                 dragIngInx: -1,
                 enterInx: -1,
+            },{
+                name: 'Resume',
+                icon: 'https://pic.imgdb.cn/item/66821a9ad9c307b7e9244696.png',
+                url: 'http://resume.taojun.top',
+                inx:1,
+                dragIngInx: -1,
+                enterInx: -1,
             }]
         }
     }
@@ -62,6 +69,7 @@ export default class Content extends Component {
         })
     }
     dragEnd = (inx)=>{
+        if (this.getApps(this.state.enterInx))return;
         this.getApps(inx).inx=this.state.enterInx;
         this.setState({})
     }
@@ -80,21 +88,20 @@ export default class Content extends Component {
         })
     }
     init = ()=>{
-        // getPerDayWord().then(res=>{
-        //     res.data.author==='unknown'&&(res.data.author='佚名');
-        //     this.setState({
-        //         cardText:res.data
-        //     })
-        // })
+        getPerDayWord().then(cardText=>{
+            this.setState({
+                cardText
+            })
+        })
+        this.initCard();
         window.addEventListener('resize',this.initCard)
-        fetchSvg('/src/assets/img/person.svg','.personSvg').then(this.initCard);
     }
     render() {
         return (
             <main className={"content"}>
-                <DragCartoon></DragCartoon>
+                <DragCartoon/>
                 <div className="computer">
-                    <img className={'bg'} src="/src/assets/img/computer.svg" alt=""/>
+                    <img className={'bg'} src={computerSvg} alt=""/>
                     <div className={"container"} style={{backgroundImage:`url(${this.state.bgImg})`}}>
                         {Array.from({length:72}).map((_,inx)=><div className={"item"} key={inx} onDragEnter={()=>this.dragEnter(inx)} >
                             {this.getApps(inx)?<div  className={'app'} draggable onClick={()=>this.to(inx)} onDragStart={()=>this.dragStart=(inx)} onDragEnd={()=>this.dragEnd(inx)}>
@@ -105,8 +112,10 @@ export default class Content extends Component {
                     </div>
                 </div>
                 <div className="person">
-                    <div className="personSvg"></div>
-                    <div className="card" style={{...this.state.card}}>
+                    <div className="personSvg">
+                        <PersonSvg/>
+                    </div>
+                    <div className="card customScroll" style={{...this.state.card}}>
                         <p>{this.state.cardText.text}</p>
                         <p className={'author'}>{this.state.cardText.author}</p>
                     </div>

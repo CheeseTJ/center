@@ -2,3 +2,17 @@
     margin: 0;
     padding: 0;
 }
+.customScroll{
+    overflow-y:auto;
+}
+.customScroll::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+.customScroll::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 2px;
+}
+.customScroll:hover::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
